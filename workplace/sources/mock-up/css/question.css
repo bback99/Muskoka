@@ -1,5 +1,37 @@
 body {
 	text-align: center;
+	width: 80%;
+	background-color: white;
+	margin: 15px auto;
+	padding: 15px 25px;
+	border: 1px solid black;
+	border-radius: 25px;
+	box-shadow: 5px 5px 0 0;	
+}
+
+header {
+	display: inline-block;
+	text-align: left;
+	padding: 0.7em 0em;
+	width: 90%;
+	color: blue;
+	font-size: 200%;
+	font-weight: bold;
+	font-variant: small-caps;
+	border-bottom: 2px solid #ef9c00;
+}
+
+footer {
+	display: inline-block;
+	width: 90%;
+	margin-top: 2em;
+	border-top: 2px solid #ef9c00;
+	padding-top: .7em;
+}
+
+footer p {
+	font-size: 80%;
+	text-align: left;
 }
 
 fieldset {
@@ -9,13 +41,24 @@ fieldset {
 	width: 60%;
 }
 
+table {
+	display: inline-block;
+    border: 2px solid #aaaaaa;
+}
+
 #alphabets {
 	display: inline-block;
 	border: 0px solid #aaaaaa;
     width: 70%;
 }
 
-table {
+#table_choice {
+	display: inline-block;
+    border: 2px solid #aaaaaa;
+    box-shadow: 3px 3px 4px 4px red;
+}
+
+#table_answer {
 	display: inline-block;
     border: 2px solid #aaaaaa;
 }
@@ -35,12 +78,17 @@ td {
 	padding-top: 10px;
 }
 
-#div_question {
+#div11 {
 	border: 2px solid red;
 	padding-top: 10px;
 }
 
-#div11 {
+.choice {
+	border: 2px solid black;
+	padding-top: 10px;	
+}
+
+#div_question {
 	border: 2px solid red;
 	padding-top: 10px;
 }
@@ -51,6 +99,25 @@ td {
 	font-style: italic;
 	font-weight: bold;
 }
+
+#hint_title {
+	text-align: left;
+	color: blue;
+	font-size: 200%;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+#hint_area {
+	padding-top: 2em;
+	display: none;
+}
+
+#hint_img {
+	padding-top: 2em;
+	cursor: pointer;
+}
+
 
 #question_num {
 	text-align: left;
@@ -71,4 +138,16 @@ td {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+header span {
+	text-align: right;
+	font-size: 80%;
+	padding-top: 0.3em;
+}
+
+header div {
+	padding: 0 0;
+	margin: 0 0;
+	float: right;
 }
