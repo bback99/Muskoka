@@ -7,6 +7,6 @@ To split the project into several parts
 2. Login part & user account update (Denisson)
 3. Game logic part (Chris)
 4. Ranking part (Seungho)
-5. Admin user & statistic part (Chris)
+5. Admin user(appendix) & statistic part (Chris)
 6. we can add later : css, header, footer - Denisson & Seungho (if necessary, chris also shares this work)
 7. Database connection & Session check (Denisson)
