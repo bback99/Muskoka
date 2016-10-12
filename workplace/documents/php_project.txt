@@ -8,5 +8,5 @@ To split the project into several parts
 3. Game logic part (Chris)
 4. Ranking part (Seungho)
 5. Admin user & statistic part (Chris)
-6. we can add later : css, header, footer (We can add later) - Denisson
+6. we can add later : css, header, footer - Denisson & Seungho  
 7. Database connection & Session check (Denisson)
