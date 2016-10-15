@@ -19,8 +19,10 @@ var timerFunction = function timer() {
 		timer_area.style.color = "red";
 	}
 	if (current_time == 0) {
-		clearInterval(intervalId);
+		document.location.href = "question_process.php?timeout=true";
+		clearInterval(intervalId);			
 	}
+	
 	var new_time = char_zero + (parseInt(current_time) - 1);
 	timer_obj.firstChild.nodeValue = new_time;	
 };
@@ -45,11 +47,11 @@ function drop(ev) {
     srcParent.appendChild(target)
     
 	// check whether all slots are filled.
-	var answer_td_list = document.getElementsByClassName("answer_td");
+	var question_slot_list = document.getElementsByClassName("question_slot");
 	var button_disabled = false;
 	
-	for (var i = 0; i < answer_td_list.length; i++) {
-		if (answer_td_list[i].id == "") {
+	for (var i = 0; i < question_slot_list.length; i++) {
+		if (question_slot_list[i].id == "") {
 			button_disabled = true;
 			break;
 		}
@@ -68,18 +70,16 @@ function showHint() {
 }
 
 function nextButtonClicked() {
-	var answer_td_list = document.getElementsByClassName("answer_td");
+	var question_slot_list = document.getElementsByClassName("question_slot");
 	var answer = "";
 	
-	for (var i = 0; i < answer_td_list.length; i++) {
-		answer += answer_td_list[i].id.substring(5);
+	for (var i = 0; i < question_slot_list.length; i++) {
+		answer += question_slot_list[i].id.substring(5);
 	}
 	
-	var question_num = $("question_num").value;
 	var question_id = $("question_id").value;
 	var time = $("timer").firstChild.nodeValue;
-	document.location.href = "question_process.php?question_num=" + question_num +
-							"&question_id=" + question_id +
+	document.location.href = "question_process.php?question_id=" + question_id +
 							"&user_response=" + answer +
 							"&time=" + time;
 }

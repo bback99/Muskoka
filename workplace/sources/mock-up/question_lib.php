@@ -1,26 +1,39 @@
 <?php	
-	session_start(); // this will be deleted when DB is used. 
-	if (isset($_SESSION["used_qid_list"])) {
-		$used_qid_list = $_SESSION["used_qid_list"];
-	}
-	else {
-		$used_qid_list = array();
-	}
+	session_start();
 	
-	if (isset($_SESSION["score"])) {
-		$score = $_SESSION["score"];
-	}
-	else {
-		$score = 0;
-	}
-				
+	// this is global variables to set the game environment.
+	// -----------------------------------------------------
+	$CHOICE_CHAR_NUM = 7;
+	$EMPTY_SLOT_NUM = 2;
+	$TOTAL_QUESTION_NUM = 5;
+	$TIME_LIMIT = 30;
+	// -----------------------------------------------------
+
+	$question_list = array(0 => "BEAUTIFUL", 1 => "AUTOMATIC", 2 => "STAGNANT",
+						3 => "COALITION", 4 => "VICINITY", 5 => "PLAUSIBLE", 
+						6 => "CULPRIT", 7 => "ALLEGED", 8 => "OVERHAUL", 9 => "COMMITMENT");
+
+	$hint_list = array(0 => "delighting the senses or exciting intellectual or emotional admiration.",
+					1 => "working by itself with little or no direct human control.",
+					2 => "(of a body of water or the atmosphere of a confined space) " .  
+						"having no current or flow and often having an unpleasant smell as a consequence.",
+					3 => "an alliance for combined action, especially a temporary " .
+						"alliance of political parties forming a government or of states.",
+					4 => "the area near or surrounding a particular place.",
+					5 => "(of an argument or statement) seeming reasonable or probable.",
+					6 => "a person who is responsible for a crime or other misdeed.",
+					7 => "(of an incident or a person) said, without proof, to have " .
+						"taken place or to have a specified illegal or undesirable quality.",
+					8 => "take apart (a piece of machinery or equipment) in order to examine " .
+						"it and repair it if necessary.",
+					9 => "the state or quality of being dedicated to a cause, activity, etc."
+				);
+																
 	function getAnswer($qid) {
-		$question_list = array(0 => "BEAUTIFUL", 1 => "AUTOMATIC", 2 => "STAGNANT",
-							3 => "COALITION", 4 => "VICINITY", 5 => "PLAUSIBLE", 
-							6 => "CULPRIT", 7 => "ALLEGED", 8 => "OVERHAUL", 9 => "COMMITMENT");		
+		global $question_list;	
 		return $question_list[$qid];
 	}
-	
+
 	function getChoiceChars($question, $num, $empty_position_list) {
 		$alphabet = getRandomAlphabets($num);
 		$replace_cnt = 0;
@@ -55,10 +68,8 @@
 	}
 	
 	function getQuestion($used_qid_list) {
-		$question_list = array(0 => "BEAUTIFUL", 1 => "AUTOMATIC", 2 => "STAGNANT",
-							3 => "COALITION", 4 => "VICINITY", 5 => "PLAUSIBLE", 
-							6 => "CULPRIT", 7 => "ALLEGED", 8 => "OVERHAUL", 9 => "COMMITMENT");
-									
+		global $question_list;
+		global $hint_list;
 		$undup_list = array();
 		$undup_list_cnt = 0;
 		
@@ -77,10 +88,6 @@
 			session_destroy();			
 		}
 		
-		return array ($selected_id, $question_list[$selected_id]);	
-	}
-	
-	function getHint() {
-		
+		return array ($selected_id, $question_list[$selected_id], $hint_list[$selected_id]);	
 	}
 ?>
