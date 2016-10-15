@@ -1,20 +1,23 @@
 <?php require("question_lib.php") ?>
-<?php
-	
-	$question_num = 1;
+<?php	
 	
 	if (isset($_GET["question_num"])) {
 		$question_num = $_GET["question_num"];
 	}
-	
+	else{
+		$question_num = 1;
+	} 
+		
 	list ($question_id, $question) = getQuestion($used_qid_list);
 	$empty_positions = getRandomEmptyPositions($question, 2);
 	$choices = getChoiceChars($question, 7, $empty_positions);
 	
 	// session save
-	$cnt_used_list = count($used_qid_list);
+	$cnt_used_list = count($used_qid_list); 
 	$used_qid_list[$cnt_used_list] = $question_id;
-	$_SESSION["used_qid_list"] = $used_qid_list;
+	// to avoid reusing the same question which was already used before.
+	$_SESSION["used_qid_list"] = $used_qid_list; 
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -72,7 +75,9 @@
 		for ($i = 0; $i < strlen($question); $i++) {
 			if (in_array($i, $empty_positions)) {
 	?>				
-				<td class="answer_td" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 2px solid red;padding-top: 10px;"></td>
+				<td class="answer_td" ondrop="drop(event)" ondragover="allowDrop(event)" style="border: 2px solid red;padding-top: 10px;">
+					<img id="drag<?=$i?>" ondragstart="drag(event)" />
+				</td>
 	<?php
 			}
 			else {

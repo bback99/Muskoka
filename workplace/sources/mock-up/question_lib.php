@@ -23,19 +23,15 @@
 	
 	function getChoiceChars($question, $num, $empty_position_list) {
 		$alphabet = getRandomAlphabets($num);
-		$new_alphabet = $alphabet;
 		$replace_cnt = 0;
 		
 		for ($i = 0; $i < count($empty_position_list); $i++) {
 			$pos = $empty_position_list[$i];
-			if (in_array($question[$pos], $alphabet) == FALSE) {
-				$new_alphabet[$replace_cnt++] = $question[$pos];
-			}
+			$alphabet[$replace_cnt++] = $question[$pos];
 		}
 		
-		shuffle($new_alphabet);
-		
-		return $new_alphabet;
+		shuffle($alphabet);
+		return $alphabet;
 	}
 	
 	function getRandomAlphabets($num) {

@@ -34,11 +34,16 @@ function drag(ev) {
 }
 	
 function drop(ev) {
-	ev.preventDefault();
-	var data = ev.dataTransfer.getData("text");
-	ev.target.appendChild($(data));
-	ev.target.id = "char_" + data;
-	
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var src = $(data);
+    var srcParent = src.parentNode;
+    var target = ev.currentTarget.firstElementChild;
+    
+    ev.currentTarget.replaceChild(src, target);
+    ev.currentTarget.id = "char_" + data;
+    srcParent.appendChild(target)
+    
 	// check whether all slots are filled.
 	var answer_td_list = document.getElementsByClassName("answer_td");
 	var button_disabled = false;
@@ -50,6 +55,7 @@ function drop(ev) {
 		}
 	}
 	
+	// only if all the empty slots are filled, next button can be clicked.
 	$("next_button").disabled = button_disabled;
 }
 	

@@ -10,19 +10,18 @@
 	$message = "";
 	
 	if ($user_response == $answer) {
-		$message = "You got the answer!!\\nYou spent " . (30 - $time) . " seconds.";
+		$message = "You got the right answer!!\\nYou spent " . (30 - $time) . " seconds.";
 		$score++;
 		$_SESSION["score"] = $score; 
 	}
-	else 
-	{
-		$message = "You are wrong!!";
+	else {
+		$message = "You answer is wrong!!";
 	}
 	
 	if ($question_num == 5) {
 		$message = $message . "\\n\\nGame Over!!\\n\\nTotal Score: " . " " . $score;
 		$question_num = 0;
-		$session_destroy;
+		session_destroy();
 	}
 	
 	$question_num += 1;
