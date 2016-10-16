@@ -60,9 +60,9 @@
 		$total_score = number_format($score * 10 * $total_remaining_time / $total_limit_time, 1, '.', '');
 				
 		$message = $message . "\\n\\nGame Over!!\\n\\n".
-				"Corrent Answers: $score\\n".
-				"Total Spending time : $total_spending_time Sec\\n".
-				"Total Score: $score * 10 * (Your spending time / Total time)".
+				"Correct Answers: $score\\n".
+				"Total Remaining time : $total_spending_time Sec\\n".
+				"Total Score: $score * 10 * (Your remaining time / Total time)".
 				" = $total_score";
 		session_destroy();
 	}

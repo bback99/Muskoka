@@ -84,8 +84,7 @@
 			$selected_id = $undup_list[$rand_idx];
 		}
 		else {
-			$selected_id = 0;
-			session_destroy();			
+			$selected_id = 0;		
 		}
 		
 		return array ($selected_id, $question_list[$selected_id], $hint_list[$selected_id]);	
