@@ -1,5 +1,18 @@
-<?php require("question_lib.php") ?>
-<?php	
+<?php require("include.php") ?>
+<?php
+	session_start();
+	
+	// user information
+	if (isset($_SESSION["userid"]) == FALSE) {
+		$_SESSION["userid"] = 2;
+		$_SESSION["username"] = "Denisson Paz";
+		$_SESSION["stage_level"] = 2;
+	}
+	
+	$userid = $_SESSION["userid"];
+	$username = $_SESSION["username"];
+	$stage_level = $_SESSION["stage_level"];	 
+	
 	if (isset($_SESSION["current_qnum"])) {
 		$question_num = $_SESSION["current_qnum"];
 		if ($question_num > $TOTAL_QUESTION_NUM) {
@@ -19,7 +32,7 @@
 	}
 
 	// get a question and a hint
-	list ($question_id, $question, $hint) = getQuestion($used_qid_list);
+	list ($question_id, $question) = getQuestion($stage_level, $used_qid_list);
 	// decide which positions will be blanks.
 	$empty_positions = getRandomEmptyPositions($question, $EMPTY_SLOT_NUM);
 	// get some characters for an user to choose
@@ -50,7 +63,7 @@
 	<input type="hidden" id="question_id" value="<?=$question_id?>">
 	
 	<section>
-		<div id="hint_img_area">
+		<!--div id="hint_img_area">
 			<img id="hint_img" onclick="showHint()" src="img/hint.jpg" width="100" height="100">
 		</div>
 			
@@ -61,6 +74,10 @@
 			</legend>
 			<p id="hint"><?=$hint?></p>
 		</fieldset>
+		</div-->
+		
+		<div id="word_level">
+			<h1>[ <?=$username?> : STAGE LEVEL-<?=$stage_level?> ]</h1>
 		</div>
 		
 		<br><br>

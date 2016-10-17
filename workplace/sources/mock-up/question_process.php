@@ -1,5 +1,15 @@
-<?php require("question_lib.php") ?>
-<?php
+<?php require("include.php") ?>
+<?php	
+	session_start();
+
+	if (isset($_SESSION["userid"])) {
+		$userid = $_SESSION["userid"];
+		$stage_level = $_SESSION["stage_level"];
+	}
+	else {
+		$userid = -1;
+	}
+	
 	if (isset($_SESSION["current_qnum"])) {
 		$question_num = $_SESSION["current_qnum"];
 	}
@@ -21,6 +31,7 @@
 		$total_spending_time = 0;
 	}
 	
+	$messageType = "alert";
 	$message = "";
 	
 	// The case that an user couldn't solve a question in time
@@ -54,17 +65,22 @@
 	}
 	
 	// when the user solved the last question.
-	if ($question_num == $TOTAL_QUESTION_NUM) {
+	if ($userid != -1 && $question_num == $TOTAL_QUESTION_NUM) {
 		$total_limit_time = $TOTAL_QUESTION_NUM * $TIME_LIMIT;
 		$total_remaining_time = $total_limit_time - $total_spending_time;
 		$total_score = number_format($score * 10 * $total_remaining_time / $total_limit_time, 1, '.', '');
 				
 		$message = $message . "\\n\\nGame Over!!\\n\\n".
 				"Correct Answers: $score\\n".
-				"Total Remaining time : $total_spending_time Sec\\n".
+				"Total Spending Time : $total_spending_time Sec\\n".
 				"Total Score: $score * 10 * (Your remaining time / Total time)".
-				" = $total_score";
+				" = $total_score\\n\\n".
+				"Continue?";
+				
+		saveScore($total_score, $stage_level, $userid);
 		session_destroy();
+		
+		$messageType = "confirm";
 	}
 	
 	// invalid access
@@ -75,6 +91,20 @@
 ?>
 
 <script>
-	window.alert("<?=$message?>");
-	document.location.href = "question.php";
+<?php
+	if ($messageType == "alert") {
+?>
+		window.alert("<?=$message?>");
+		document.location.href = "question.php";
+<?php
+	}
+	else {
+?>	
+		var result = confirm("<?=$message?>");
+		if (result == true) {
+			document.location.href = "question.php";
+		}
+<?php
+	}
+?>
 </script>

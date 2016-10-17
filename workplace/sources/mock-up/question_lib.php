@@ -1,6 +1,4 @@
 <?php	
-	session_start();
-	
 	// this is global variables to set the game environment.
 	// -----------------------------------------------------
 	$CHOICE_CHAR_NUM = 7;
@@ -12,6 +10,8 @@
 	$question_list = array(0 => "BEAUTIFUL", 1 => "AUTOMATIC", 2 => "STAGNANT",
 						3 => "COALITION", 4 => "VICINITY", 5 => "PLAUSIBLE", 
 						6 => "CULPRIT", 7 => "ALLEGED", 8 => "OVERHAUL", 9 => "COMMITMENT");
+						
+	$word_level_list = array(1, 1, 2, 3, 3, 3, 2, 2, 3, 2); 
 
 	$hint_list = array(0 => "delighting the senses or exciting intellectual or emotional admiration.",
 					1 => "working by itself with little or no direct human control.",
@@ -67,14 +67,14 @@
 		return $rand_pos_list;
 	}
 	
-	function getQuestion($used_qid_list) {
+	function getQuestion($stage_level, $used_qid_list) {
 		global $question_list;
-		global $hint_list;
+		global $word_level_list;
 		$undup_list = array();
 		$undup_list_cnt = 0;
 		
 		foreach ($question_list as $key => $value) {
-			if (in_array($key, $used_qid_list) == FALSE) {
+			if (in_array($key, $used_qid_list) == FALSE && $word_level_list[$key] == $stage_level) {
 				$undup_list[$undup_list_cnt++] = $key;
 			}
 		}
@@ -87,6 +87,9 @@
 			$selected_id = 0;		
 		}
 		
-		return array ($selected_id, $question_list[$selected_id], $hint_list[$selected_id]);	
+		return array ($selected_id, $question_list[$selected_id], $word_level_list[$selected_id]);	
 	}
+	
+	function saveScore($score, $stage_level, $userid) {
+	}	
 ?>
