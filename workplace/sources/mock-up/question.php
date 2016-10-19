@@ -31,7 +31,7 @@
 		$used_qid_list = array();
 	}
 	
-	// when the user starts the game, the start_game_time should be recored into the DB
+	// when the user starts the game, the start_game_time should be recorded into the DB
 	if ($userid >= 0 && $question_num == 1) {
 		saveStartGameTime($userid);	
 	}	

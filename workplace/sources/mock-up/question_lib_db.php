@@ -111,7 +111,7 @@
 		}
 	
 		$currentTime = date('Y-m-d H:i:s');
-		$query = "UPDATE users SET user_start_game_time = '$currentTime', user_end_game_time = NULL where user_id = " . $userid;
+		$query = "UPDATE USERS SET user_start_game_time = '$currentTime', user_end_game_time = NULL where user_id = " . $userid;
 		$isUpdated = mysqli_query($conn, $query);
 	
 		if ($isUpdated == FALSE) {
@@ -126,7 +126,7 @@
 		}
 	
 		$currentTime = date('Y-m-d H:i:s');
-		$query = "UPDATE users SET user_end_game_time = '$currentTime' where user_id = " . $userid;
+		$query = "UPDATE USERS SET user_end_game_time = '$currentTime' where user_id = " . $userid;
 		$isUpdated = mysqli_query($conn, $query);
 	
 		if ($isUpdated == FALSE) {
