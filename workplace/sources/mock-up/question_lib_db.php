@@ -103,4 +103,54 @@
 			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
 		}	
 	}
+	
+	function saveStartGameTime($userid) {
+		$conn = connect_db();
+		if ($conn->connect_error) {
+			die ("Connection failed : " . $conn->connect_error);
+		}
+	
+		$currentTime = date('Y-m-d H:i:s');
+		$query = "UPDATE users SET user_start_game_time = '$currentTime', user_end_game_time = NULL where user_id = " . $userid;
+		$isUpdated = mysqli_query($conn, $query);
+	
+		if ($isUpdated == FALSE) {
+			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
+		}
+	}
+	
+	function saveEndGameTime($userid) {
+		$conn = connect_db();
+		if ($conn->connect_error) {
+			die ("Connection failed : " . $conn->connect_error);
+		}
+	
+		$currentTime = date('Y-m-d H:i:s');
+		$query = "UPDATE users SET user_end_game_time = '$currentTime' where user_id = " . $userid;
+		$isUpdated = mysqli_query($conn, $query);
+	
+		if ($isUpdated == FALSE) {
+			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
+		}
+	}
+	
+	/*
+	function getSpendingTime($userid) {
+		$conn = connect_db();
+		if ($conn->connect_error) {
+			die ("Connection failed : " . $conn->connect_error);
+		}
+	
+		$query = "SELECT count(*) FROM users ".
+				"WEHRE user_id = $userid && user_start_game_time != NULL && user_end_game_time = NULL && TIMESTAMPDIFF(SECOND, user_start_game_time, now()) <= 300";
+		
+		$resultSet = excute_select_query($conn, $query);
+		if ($resultSet == FALSE) {
+			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
+		}		
+
+		$row = mysqli_fetch_row($resultSet);
+		return $row[0];
+	}
+	*/
 ?>

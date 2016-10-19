@@ -63,7 +63,7 @@
 		$_SESSION["total_spending_time"] = $total_spending_time;
 		$_SESSION["current_qnum"] = $question_num + 1;
 	}
-	
+		
 	// when the user solved the last question.
 	if ($userid != -1 && $question_num == $TOTAL_QUESTION_NUM) {
 		$total_limit_time = $TOTAL_QUESTION_NUM * $TIME_LIMIT;
@@ -78,6 +78,7 @@
 				"Continue?";
 				
 		saveScore($total_score, $stage_level, $userid);
+		saveEndGameTime($userid);			
 		session_destroy();
 		
 		$messageType = "confirm";

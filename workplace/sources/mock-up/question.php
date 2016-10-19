@@ -30,6 +30,11 @@
 	else {
 		$used_qid_list = array();
 	}
+	
+	// when the user starts the game, the start_game_time should be recored into the DB
+	if ($userid >= 0 && $question_num == 1) {
+		saveStartGameTime($userid);	
+	}	
 
 	// get a question and a hint
 	list ($question_id, $question) = getQuestion($stage_level, $used_qid_list);
