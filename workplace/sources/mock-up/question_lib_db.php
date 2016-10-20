@@ -134,23 +134,24 @@
 		}
 	}
 	
-	/*
-	function getSpendingTime($userid) {
+	function getGamingUsersNumber() {
 		$conn = connect_db();
 		if ($conn->connect_error) {
 			die ("Connection failed : " . $conn->connect_error);
 		}
-	
+				
 		$query = "SELECT count(*) FROM users ".
-				"WEHRE user_id = $userid && user_start_game_time != NULL && user_end_game_time = NULL && TIMESTAMPDIFF(SECOND, user_start_game_time, now()) <= 300";
+				"WHERE user_start_game_time IS NOT NULL AND user_end_game_time IS NULL AND TIMESTAMPDIFF(SECOND, user_start_game_time, now()) <= 300";
+	
+		$resultSet = mysqli_query($conn, $query);
 		
-		$resultSet = excute_select_query($conn, $query);
 		if ($resultSet == FALSE) {
 			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
-		}		
-
+		}
+				
 		$row = mysqli_fetch_row($resultSet);
+		
 		return $row[0];
 	}
-	*/
+	
 ?>
