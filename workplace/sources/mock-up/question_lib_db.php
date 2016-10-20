@@ -18,6 +18,8 @@
 		$resultSet = excute_select_query($conn, $query);
 		$row = mysqli_fetch_row($resultSet);
 		
+		mysqli_close($conn);
+		
 		return $row[0];
 	}
 
@@ -84,6 +86,8 @@
 		$resultSet = excute_select_query($conn, $query);
 		$row = mysqli_fetch_row($resultSet);
 		
+		mysqli_close($conn);
+		
 		return array ($selected_id, $row[0]);
 	}
 	
@@ -101,7 +105,9 @@
 	
 		if ($isInserted == FALSE) {
 			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
-		}	
+		}
+		
+		mysqli_close($conn);
 	}
 	
 	function saveStartGameTime($userid) {
@@ -117,6 +123,8 @@
 		if ($isUpdated == FALSE) {
 			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
 		}
+		
+		mysqli_close($conn);
 	}
 	
 	function saveEndGameTime($userid) {
@@ -132,6 +140,8 @@
 		if ($isUpdated == FALSE) {
 			echo "<br> Error: " . $query . "<br>" . $conn->error . "<br>";
 		}
+			
+		mysqli_close($conn);	
 	}
 	
 	function getGamingUsersNumber() {
@@ -150,6 +160,7 @@
 		}
 				
 		$row = mysqli_fetch_row($resultSet);
+		mysqli_close($conn);	
 		
 		return $row[0];
 	}
