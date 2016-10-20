@@ -31,7 +31,6 @@
 		$total_spending_time = 0;
 	}
 	
-	$messageType = "alert";
 	$message = "";
 	
 	// The case that an user couldn't solve a question in time
@@ -51,37 +50,38 @@
 		$answer = getAnswer($question_id);
 	
 		if ($user_response == $answer) {
-			$message = "You got the right answer!!\\nYou spent " . $current_spending_time . " seconds.";
+			$message = "Great!!<br><br>You spent " . $current_spending_time . " seconds.<br><br>";
 			$score++;
 			$_SESSION["score"] = $score; 
 		}
 		else {
-			$message = "Your answer is wrong!!";
+			$message = "Wrong answer!!<br><br>Please, be carefull.<br><br>";
 		}
 		
 		$total_spending_time += $current_spending_time;
 		$_SESSION["total_spending_time"] = $total_spending_time;
 		$_SESSION["current_qnum"] = $question_num + 1;
 	}
-		
+	
+	$button = "<a href='#' class='next_btn'>Next</a>";
+	
 	// when the user solved the last question.
 	if ($userid != -1 && $question_num == $TOTAL_QUESTION_NUM) {
 		$total_limit_time = $TOTAL_QUESTION_NUM * $TIME_LIMIT;
 		$total_remaining_time = $total_limit_time - $total_spending_time;
 		$total_score = number_format($score * 10 * $total_remaining_time / $total_limit_time, 1, '.', '');
 				
-		$message = $message . "\\n\\nGame Over!!\\n\\n".
-				"Correct Answers: $score\\n".
-				"Total Spending Time : $total_spending_time Sec\\n".
+		$message = $message . "Game Over!!<br><br>".
+				"Correct Answers: $score<br>".
+				"Total Spending Time : $total_spending_time Sec<br>".
 				"Total Score: $score * 10 * (Your remaining time / Total time)".
-				" = $total_score\\n\\n".
-				"Continue?";
+				" = $total_score<br>";
+				
+		$button = "<a href='#' class='next_btn'>Continue</a>&nbsp;&nbsp<a href='#' class='cbtn'>Close</a><br>";
 				
 		saveScore($total_score, $stage_level, $userid);
-		saveEndGameTime($userid);			
+		saveEndGameTime($userid);
 		session_destroy();
-		
-		$messageType = "confirm";
 	}
 	
 	// invalid access
@@ -91,21 +91,37 @@
 	}
 ?>
 
-<script>
-<?php
-	if ($messageType == "alert") {
-?>
-		window.alert("<?=$message?>");
-		document.location.href = "question.php";
-<?php
-	}
-	else {
-?>	
-		var result = confirm("<?=$message?>");
-		if (result == true) {
-			document.location.href = "question.php";
-		}
-<?php
-	}
-?>
-</script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> pop-up </title> 
+		<link rel="stylesheet" href="css/popup.css"/>
+ 		<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>  		
+		<script type="text/javascript" src="js/popup.js"></script>
+		<script>
+			$(document).ready(function(){
+				layer_open('layer2');
+			});
+		</script>
+	</head>
+	<body>
+<div class="layer">
+	<div class="bg"></div>
+	<div id="layer2" class="pop-layer">
+		<div class="pop-container">
+			<div class="pop-conts">
+				<!--content //-->
+				<p class="ctxt mb20">
+					<?=$message?>
+				</p>
+
+				<div class="btn-r">
+					<?=$button?>
+				</div>
+				<!--// content-->
+			</div>
+		</div>
+	</div>
+</div>
+	</body>
+</html>
