@@ -15,7 +15,7 @@
 		}		
 	
 		$query = "SELECT WORD FROM GAME_WORD WHERE WORD_ID = $qid";
-		$resultSet = excute_select_query($conn, $query);
+		$resultSet = mysqli_query($conn, $query);
 		$row = mysqli_fetch_row($resultSet);
 		
 		mysqli_close($conn);
@@ -66,7 +66,7 @@
 		}		
 	
 		$query = "SELECT WORD_ID FROM GAME_WORD WHERE WORD_LEVEL = $stage_level";
-		$resultSet = excute_select_query($conn, $query);
+		$resultSet = mysqli_query($conn, $query);
 		
 		while ($row = mysqli_fetch_row($resultSet)) {
 			if (in_array($row[0], $used_qid_list) == FALSE) {
@@ -83,7 +83,7 @@
 		}
 		
 		$query = "SELECT WORD FROM GAME_WORD WHERE WORD_ID = $selected_id";
-		$resultSet = excute_select_query($conn, $query);
+		$resultSet = mysqli_query($conn, $query);
 		$row = mysqli_fetch_row($resultSet);
 		
 		mysqli_close($conn);
