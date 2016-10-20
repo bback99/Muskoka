@@ -93,7 +93,7 @@
 			for ($i = 0; $i < count($choices); $i++) {
 		?>
 				<td class="choice" ondrop="drop(event)" ondragover="allowDrop(event)">
-					<img id="<?=$choices[$i]?>" src="img/<?=$choices[$i]?>.gif" draggable="true" ondragstart="drag(event)" width="50" height="50">
+					<img id="<?=$choices[$i]?>" src="img/<?=$choices[$i]?>.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
 			
 				</td>
 		<?php	
