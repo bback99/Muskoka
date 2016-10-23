@@ -70,7 +70,7 @@ function resultInSearch() {
 
 // ajax in jQuery style  
 $(document).ready(function() {
-    $('.btn2').click(function() {
+    $('#btn_add_words').click(function() {
         var s_level = document.getElementById("txt_add_level");
         var s_word = document.getElementById("txt_add_word");
         if (s_level.value == "" || s_word.value == "") {
@@ -118,14 +118,13 @@ function modifyWords(index) {
 //////////////////////////////////////////////////////////////////////
 // ajax in jQuery style - using with name function
 $(document).ready(function() {
-    $('.btn3').click(function() {
+    $('#btn_remove_words').click(function() {
         removeWords(index);
     });
 });
 
 // gave function name to call button that has specific ID
 function removeWords(index) {
-    alert(index);
     if (index < 0) {
         $('#resultAddWords').html("");
         return;

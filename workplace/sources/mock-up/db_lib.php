@@ -62,10 +62,9 @@
 	}
 	
 	function get_query_statistics() {
-		return "SELECT (SELECT COUNT( DISTINCT USER_ID ) FROM GAME_HISTORY) as TOTAL, COUNT(*) as PASSED_COUNT, AVG(SCORE) as AVERAGE, 
+		return "SELECT (SELECT COUNT( DISTINCT USER_ID ) FROM GAME_HISTORY) as TOTAL, (SELECT COUNT(*) FROM GAME_HISTORY WHERE SCORE >= 80) as PASSED_COUNT, AVG(SCORE) as AVERAGE,
 			(SELECT count(*) FROM USERS WHERE user_start_game_time IS NOT NULL AND user_end_game_time IS NULL AND TIMESTAMPDIFF(SECOND, user_start_game_time, now()) <= 300) as CURRENT_USE
-			FROM GAME_HISTORY
-			WHERE SCORE >= 80";
+			FROM GAME_HISTORY";
 	}
 	
 	function get_query_words() {

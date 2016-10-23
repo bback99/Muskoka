@@ -1,0 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+body {
+	background: #f3f3f3;
+}
+.r_table {
+    border-collapse: collapse;
+    width: 100%;
+	text-align: center;
+	border: 2px solid #D8D8D8;
+}
+.r_th, .r_td {
+    text-align: left;
+    padding: 8px;
+	text-align: center;
+	border: 1px solid #D8D8D8;
+}
+.r_tr:nth-child(even){background-color: #DFDFDF}
+
+.r_th {
+    background-color: #56c2e1;
+    color: white;
+	text-align: center;
+	height: 50px;
+	font-family: 'Bree Serif', serif;
+	font-size: 20px;
+	font-weight:300;
+}
+caption {
+	font-family: 'Bree Serif', serif;
+	font-weight:300;
+	color: #808080;
+}

@@ -12,17 +12,17 @@
     $isResult = true;
     // query for user name and score
     echo "<table style='width:100%'>";
-    echo "<caption> Score </caption>";
-    echo "<tr><th> Total Score </th><th> Best Score </th><th> Worst Score </th><th> Average Score </th></tr>";
-    echo "<tr><td>" .$row[0]. "</td><td> " .$row[1]. "</td><td>" .$row[2]. "</td><td>" .$row[3]. "</td></tr>";
+    echo "<caption> SCORE </caption>";
+    echo "<tr class='tr'><th class='th'> TOTAL SCORE </th><th class='th'> BEST SCORE </th><th class='th'> WORST SCORE </th><th class='th'> AVERAGE SCORE </th></tr>";
+    echo "<tr class='tr'><td>" .$row[0]. "</td><td> " .$row[1]. "</td><td>" .$row[2]. "</td><td>" .$row[3]. "</td></tr>";
     echo "</table>";
 
     // // query for game history
     $result_history = excute_select_query_for_multi($conn, get_query_game_history($user_id));
     echo "<br><br>";
     echo "<table style='width:100%'>";
-    echo "<caption> History </caption>";
-    echo "<tr class='GameHistoryTR'><th> INDEX </th><th> SCORE </th><th> STAGE_LEVEL </th><th> PLAY_DATE </th></tr>";
+    echo "<caption> HISTROY </caption>";
+    echo "<tr class='GameHistoryTR'><th class='th'> INDEX </th><th class='th'> SCORE </th><th class='th'> STAGE_LEVEL </th><th class='th'> PLAY_DATE </th></tr>";
 
     $cnt = 1;
     while($row_history = mysqli_fetch_array($result_history))
